@@ -1,0 +1,9 @@
+.mainContainer{
+    background-color: gainsboro;
+    display: flex;
+    flex-direction: column;
+}
+
+.fullContainer {
+    margin-left: 20px;
+}
