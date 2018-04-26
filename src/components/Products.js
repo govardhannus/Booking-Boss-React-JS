@@ -1,10 +1,5 @@
 import React from 'react';
-import products from '../data/productsData.json'
 import './products.scss'
-import {routerReducer} from "react-router-redux";
-import {DropdownButton, MenuItem, ButtonToolbar} from 'react-bootstrap';
-import {push} from 'react-router-redux';
-import {createUltimatePagination, ITEM_TYPES,} from 'react-ultimate-pagination';
 
 var reactUltimatePaginationBootstrap4 = require("react-ultimate-pagination-bootstrap-4")
 const api = require('../services/api')
