@@ -1,13 +1,17 @@
 import React, {Component} from 'react';
-import {Route, BrowserRouter} from 'react-router-dom';
+import {Route, BrowserRouter,Redirect} from 'react-router-dom';
 
 import Home from '../containers/Home'
+import Login from '../components/Login'
 
 class index extends React.Component {
     render() {
         return (
             <BrowserRouter>
-                <Route path="/" component={Home}/>
+                <div>
+                    <Route exact path="/" component={Home}/>
+                    <Route path="/login/" component={Login}/>
+                </div>
             </BrowserRouter>
         )
     }
