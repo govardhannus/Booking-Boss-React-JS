@@ -1,6 +1,5 @@
 import axios from 'axios';
 
-
  const getdata = function (page,count1) {
 
      return axios.get("http://demo0340275.mockable.io/",page,count1)
