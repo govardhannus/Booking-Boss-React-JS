@@ -19,10 +19,13 @@ export default class Home extends React.Component {
         super(props)
         this.state = {
             per_page: 20,
-            user: {}
+            user: {},
+            language: 1000
         }
         this.getperpage = this.getperpage.bind(this);
         this.logout = this.logout.bind(this);
+        this.handleLanguage = this.handleLanguage(this);
+        this.lengthData = this.lengthData(this);
     }
 
     componentDidMount() {
@@ -35,6 +38,10 @@ export default class Home extends React.Component {
         });
     }
 
+    handleLanguage(langValue){
+        this.setState({language: langValue});
+    }
+
     authListener() {
         fire.auth().onAuthStateChanged((user) => {
             if (user) {
@@ -42,7 +49,6 @@ export default class Home extends React.Component {
             } else {
                 this.setState({user: null})
             }
-
         })
     }
 
@@ -54,29 +60,38 @@ export default class Home extends React.Component {
         this.props.history.push('/login');
     }
 
+    lengthData(val){
+        this.setState({language: val});
+        console.log(val);
+    }
+
     render() {
         return (
             <div className="mainContainer">
-                {
-                    this.state.user ?
                     <div className="fullContainer">
                         <Header/>
+                        <div className="grid">
+                            <div className="totalproducts"> {this.state.language} products </div>
+                        </div>
                         {
                             this.state.user ?
                                 <Button
-                                    block
-                                    bsSize="large"
+                                    blockpa
+                                    bsSize="small"
+                                    bsStyle="primary"
                                     type="submit"
                                     onClick={this.logout}
+                                    className="logout"
                                 > Logout </Button> :
                                 <div>
 
                                     <Button
                                         block
-                                        bsSize="large"
+                                        bsSize="small"
+                                        bsStyle="primary"
                                         type="submit"
                                         onClick={this.navigateToLogin.bind(this)}
-                                    >
+                                        className="logout">
                                         Login
                                     </Button>
                                 </div>
@@ -93,9 +108,9 @@ export default class Home extends React.Component {
                             </div>
                         </div>
                         <div className="hr"></div>
-                        <Products perpage={this.state.per_page}/>
-                    </div> : <div> <Login/></div>
-                }
+                        <Products lengthData={this.lengthData} perpage={this.state.per_page}/>
+                    </div>
+
 
             </div>
 

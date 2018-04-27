@@ -1,5 +1,5 @@
 import React from 'react';
-import './products.scss'
+import style from './products.scss';
 
 var reactUltimatePaginationBootstrap4 = require("react-ultimate-pagination-bootstrap-4")
 const api = require('../services/api')
@@ -17,6 +17,7 @@ class Products extends React.Component {
             per_page: this.props.perpage
         }
         this.onPageChange = this.onPageChange.bind(this);
+
     }
 
     componentDidMount() {
@@ -25,6 +26,11 @@ class Products extends React.Component {
 
     onPageChange(page) {
         this.setState({page});
+    }
+
+    demoMethod(){
+        var value = this.state.product.length;
+        this.props.lengthData(value);
     }
 
     _fetchData() {
@@ -45,34 +51,37 @@ class Products extends React.Component {
         let start_count = 0;
 
         return (
-
-            <div className="relative">
-                {
-                    this.state.product.map((products, index) => {
-                            if (index >= start_offset && start_count < this.props.perpage) {
-                                start_count++;
-                                return (
-                                    <div className="productContainer">
-                                        <img src={products.product_image} className="image"></img>
-                                        <div className="hr"></div>
-                                        <div className="data">
-                                            <div className="title">{products.product_name}</div>
-                                            <div className="description">{products.description}</div>
-                                            <div className="price">{products.price}</div>
+            <div>
+                <div className="relative">
+                    {
+                        this.state.product.map((products, index) => {
+                                if (index >= start_offset && start_count < this.props.perpage) {
+                                    start_count++;
+                                    return (
+                                        <div className="productContainer">
+                                            <img src={products.product_image} className="image"></img>
+                                            <div className="hr"></div>
+                                            <div className="data">
+                                                <div className="title">{products.product_name}</div>
+                                                <div className="description">{products.description}</div>
+                                                <div className="price">{products.price}</div>
+                                            </div>
                                         </div>
-                                    </div>
-                                )
+                                    )
+                                }
                             }
-                        }
-                    )
-                }
-                <UltimatePagination
-                    currentPage={this.state.page}
-                    totalPages={totalno}
-                    onChange={this.onPageChange}
-                />
+                        )
+                    }
 
 
+                </div>
+                <div className="">
+                    <UltimatePagination
+                        currentPage={this.state.page}
+                        totalPages={totalno}
+                        onChange={this.onPageChange}
+                    />
+                </div>
             </div>
 
 

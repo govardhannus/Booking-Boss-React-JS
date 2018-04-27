@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`show render Header correctly 1`] = `
+<div>
+  <div
+    className="allproducts"
+  >
+    All products
+  </div>
+  <div
+    className="grid"
+  >
+    <div
+      className="totalproducts"
+    >
+       24 products 
+    </div>
+  </div>
+</div>
+`;

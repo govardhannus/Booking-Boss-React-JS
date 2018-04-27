@@ -6,9 +6,6 @@ class Header extends React.Component {
         return (
             <div >
                 <div className="allproducts">All products</div>
-                <div className="grid">
-                    <div className="totalproducts"> 24 products </div>
-                </div>
             </div>
 
         )
