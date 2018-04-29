@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Route, BrowserRouter,Redirect} from 'react-router-dom';
 
+//components
 import Home from '../containers/Home'
 import Login from '../components/Login'
 

@@ -1,8 +1,20 @@
-export default function products(state = []) {
-    return state; // nothing to do here, but we need products node in redux store
+let defaultState ={
+    product:[]
 }
 
 // selectors
-export function getProducts(state, props) {
-    return state.products;
+const getProducts = (state=defaultState, action) => {
+    if(action.type === "getdata"){
+        return{
+            ...state,
+            product:action.product
+        }
+    }else {
+        return{
+            ...state
+        }
+    }
 }
+
+export default getProducts;
+

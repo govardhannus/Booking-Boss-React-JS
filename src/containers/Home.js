@@ -10,9 +10,6 @@ import Header from '../components/Header'
 import Products from '../components/Products'
 import Login from '../components/Login'
 
-var loginAction = "login";
-var signupAction = "signup";
-
 export default class Home extends React.Component {
 
     constructor(props) {
@@ -20,12 +17,9 @@ export default class Home extends React.Component {
         this.state = {
             per_page: 20,
             user: {},
-            language: 1000
         }
         this.getperpage = this.getperpage.bind(this);
         this.logout = this.logout.bind(this);
-        this.handleLanguage = this.handleLanguage(this);
-        this.lengthData = this.lengthData(this);
     }
 
     componentDidMount() {
@@ -36,10 +30,6 @@ export default class Home extends React.Component {
         this.setState({
             per_page: event.target.value
         });
-    }
-
-    handleLanguage(langValue){
-        this.setState({language: langValue});
     }
 
     authListener() {
@@ -60,19 +50,11 @@ export default class Home extends React.Component {
         this.props.history.push('/login');
     }
 
-    lengthData(val){
-        this.setState({language: val});
-        console.log(val);
-    }
-
     render() {
         return (
             <div className="mainContainer">
                     <div className="fullContainer">
                         <Header/>
-                        <div className="grid">
-                            <div className="totalproducts"> {this.state.language} products </div>
-                        </div>
                         {
                             this.state.user ?
                                 <Button
@@ -97,7 +79,6 @@ export default class Home extends React.Component {
                                 </div>
                         }
 
-
                         <div className="dropdown">
                             <div className="dropdown2">
                                 <select name="navyOp" onChange={this.getperpage}>
@@ -108,10 +89,8 @@ export default class Home extends React.Component {
                             </div>
                         </div>
                         <div className="hr"></div>
-                        <Products lengthData={this.lengthData} perpage={this.state.per_page}/>
+                        <Products perpage={this.state.per_page}/>
                     </div>
-
-
             </div>
 
         )

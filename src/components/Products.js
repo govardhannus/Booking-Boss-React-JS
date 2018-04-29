@@ -1,5 +1,11 @@
 import React from 'react';
+import {connect} from 'react-redux';
+
+//style
 import style from './products.scss';
+
+//components
+import * as actions from '../reducer/actiondata'
 
 var reactUltimatePaginationBootstrap4 = require("react-ultimate-pagination-bootstrap-4")
 const api = require('../services/api')
@@ -21,30 +27,17 @@ class Products extends React.Component {
     }
 
     componentDidMount() {
-        this._fetchData();
+        this.props.loadProdcts()
     }
 
     onPageChange(page) {
         this.setState({page});
     }
 
-    demoMethod(){
-        var value = this.state.product.length;
-        this.props.lengthData(value);
-    }
-
-    _fetchData() {
-        api.getdata()
-            .then(products =>
-                this.setState({
-                    product: products
-                }))
-    }
-
     render() {
+
         //pagination
-        console.log(this.props, 'props')
-        const totalno = Math.ceil(this.state.product.length / this.props.perpage);
+        const totalno = Math.ceil(this.props.product.length / this.props.perpage);
         const total = 50;
         const current_page = this.state.page
         const start_offset = (current_page - 1) * this.state.per_page;
@@ -54,7 +47,7 @@ class Products extends React.Component {
             <div>
                 <div className="relative">
                     {
-                        this.state.product.map((products, index) => {
+                        this.props.product.map((products, index) => {
                                 if (index >= start_offset && start_count < this.props.perpage) {
                                     start_count++;
                                     return (
@@ -73,9 +66,8 @@ class Products extends React.Component {
                         )
                     }
 
-
                 </div>
-                <div className="">
+                <div>
                     <UltimatePagination
                         currentPage={this.state.page}
                         totalPages={totalno}
@@ -83,12 +75,12 @@ class Products extends React.Component {
                     />
                 </div>
             </div>
-
-
         )
     }
-
-
 }
 
-export default Products;
+const mapStateToProps = (state) => {
+    return state
+}
+
+export default connect(mapStateToProps, actions)(Products);

@@ -1,9 +1,12 @@
 import React, {Component} from "react";
 import {Button, FormGroup, FormControl, ControlLabel} from "react-bootstrap";
+
+//Components
 import "./Login.scss";
 import fire from '../config/FireBase'
 
 export default class Login extends Component {
+
     handleChange = event => {
         this.setState({
             [event.target.id]: event.target.value
